@@ -1,4 +1,5 @@
 # DentChart
+
 A web application designed to digitize dental workflows, integrating anamnesis, odontograms, and calendar management. Developed as a Computer Science thesis project.
 
 **Live Demo:** [https://dentchart.vercel.app/](https://dentchart.vercel.app/)
@@ -11,8 +12,11 @@ It centralizes patient data, procedural tracking, and scheduling to reduce admin
 
 ## 🏗 Architecture Note: Live Demo vs. Production
 
-* **Live Demo (Vercel):** The publicly accessible version is configured to use local state and mock data. This allows guests to freely explore all features, interact with the charting tools, and add/remove schedules without requiring user authentication or modifying a live production database.
-* **Production Version:** The original, fully deployed application relies on a working backend hosted on **Supabase**, utilizing its PostgreSQL database and authentication services for secure, persistent data storage across multiple clinic users.
+* **Live Demo (Vercel):** The publicly accessible version is configured for client-side interaction using local browser storage and mock data. A Next.js middleware simulates the authentication flow by managing a session token locally, allowing guests to freely explore all features, interact with the charting tools, and manage schedules without modifying a live database. Data in this environment is ephemeral.
+* **Production Version (Supabase):** The original, fully deployed application relies on Supabase as a Backend-as-a-Service, backed by a relational PostgreSQL database. 
+  * **Multi-Tenant Architecture & RLS:** It utilizes a multi-tenant data model where records (patients, treatments, schedules) are stored centrally but isolated using PostgreSQL **Row Level Security (RLS)**. Each doctor's access is restricted via a `medic_id` foreign key.
+  * **Authentication Middleware:** Supabase handles secure credential management, issuing a JWT upon login. Next.js middleware validates this JWT to protect routes and maintain the server-client session securely.
+  * **Complex State Storage:** The intricate state of the interactive SVG odontograms is serialized and stored using PostgreSQL's `JSONB` format, linked directly to the patient profile and the presiding dentist.
 
 ---
 
@@ -22,7 +26,7 @@ It centralizes patient data, procedural tracking, and scheduling to reduce admin
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS
 * **Graphics:** Custom SVG rendering (utilized for the highly interactive, individual tooth components in the Odontogram)
-* **Backend (Production):** Supabase
+* **Backend (Production):** Supabase (PostgreSQL, Auth, RLS)
 
 ---
 
@@ -54,7 +58,4 @@ Integrated digital forms for capturing and updating patient medical backgrounds,
 ### 5. Calendar & Scheduling
 A visual timeline and appointment management system. Users can easily add, edit, or remove consultations and procedures, providing a clear overview of the daily clinical workflow.
 
-![Schedule Timeline](Schedule.png)
-
 ---
-
