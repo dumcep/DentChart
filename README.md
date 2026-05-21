@@ -57,10 +57,3 @@ A visual timeline and appointment management system. Users can easily add, edit,
 
 ---
 
-## 🚀 Local Development
-
-To run this project locally on your machine:
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/dumcep/DentChart-CodeBase.git](https://github.com/dumcep/DentChart-CodeBase.git)
