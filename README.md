@@ -12,7 +12,7 @@ It centralizes patient data, procedural tracking, and scheduling to reduce admin
 
 ## 🏗 Architecture Note: Live Demo vs. Production
 
-* **Live Demo (Vercel):** The publicly accessible version is configured for client-side interaction using local browser storage and mock data. A Next.js middleware simulates the authentication flow by managing a session token locally, allowing guests to freely explore all features, interact with the charting tools, and manage schedules without modifying a live database. Data in this environment is ephemeral.
+* **Live Demo (Vercel):** The publicly accessible version is configured for client-side interaction using local browser storage and mock data. A Next.js middleware simulates the authentication flow by managing a session token locally, allowing guests to freely explore all features, interact with the charting tools, and manage schedules without modifying a live database. Data in this environment is fictional.
 * **Production Version (Supabase):** The original, fully deployed application relies on Supabase as a Backend-as-a-Service, backed by a relational PostgreSQL database. 
   * **Multi-Tenant Architecture & RLS:** It utilizes a multi-tenant data model where records (patients, treatments, schedules) are stored centrally but isolated using PostgreSQL **Row Level Security (RLS)**. Each doctor's access is restricted via a `medic_id` foreign key.
   * **Authentication Middleware:** Supabase handles secure credential management, issuing a JWT upon login. Next.js middleware validates this JWT to protect routes and maintain the server-client session securely.
