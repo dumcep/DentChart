@@ -1,5 +1,6 @@
 # DentChart
 A web application designed to digitize dental workflows, integrating anamnesis, odontograms, and calendar management. Developed as a Computer Science thesis project.
+
 **Live Demo:** [https://dentchart.vercel.app/](https://dentchart.vercel.app/)
 
 DentChart is a comprehensive web application designed to digitize and optimize dental clinic workflows. Developed as a Computer Science thesis project in direct collaboration with a dental medicine student, the platform is tailored to meet the practical, day-to-day requirements of dental students and practitioners. 
